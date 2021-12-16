@@ -10,5 +10,9 @@ public class ICAPException extends Exception {
     public ICAPException(String message) {
         super(message);
     }
+
+    public ICAPException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
 
