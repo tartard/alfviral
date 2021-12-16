@@ -240,7 +240,7 @@ public class AntivirusServiceImpl implements AntivirusService {
 				/*
 				 * if res not zero then infected!!
 				 */
-				if (res != 0) {
+				if (res == 1) {
 
 					if (logger.isInfoEnabled() || logger.isDebugEnabled()) {
 						logger.info(this.getClass().getName() + ": [ALERT File: " + contentReader.getContentUrl()
@@ -248,7 +248,11 @@ public class AntivirusServiceImpl implements AntivirusService {
 					}
 					this.addAspect(nodeRef);
 
-				} else {
+				}
+				else if(res == 2) {
+					logger.error("Could not scan file " + nodeRef.toString() + ". Check server logs.");
+				}
+				else {
 					if (logger.isDebugEnabled())
 						logger.debug("[File: " + contentReader.getContentUrl() + " is clean");
 				}

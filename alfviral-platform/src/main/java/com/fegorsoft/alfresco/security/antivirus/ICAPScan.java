@@ -135,6 +135,7 @@ public final class ICAPScan implements VirusScanMode {
         } catch (ICAPException ex) {
             System.err.println("Could not scan document: " + ex.getMessage());
             ex.printStackTrace();
+            result = 2;
 		} finally {
 			if (inputStream != null)
 				inputStream.close();
@@ -143,7 +144,7 @@ public final class ICAPScan implements VirusScanMode {
 		/*
 		 * if is OK then not infected, else, infected...
 		 */
-		if (res == false) {
+		if (res == false && result != 2) {
 			result = 1;
 			addAspect();
 		}
